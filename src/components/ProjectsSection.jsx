@@ -26,7 +26,7 @@ const projects = [
     title: "Real-Time Chat App",
     description:
       "Low-latency messaging with 99.9% uptime and real-time sync using MongoDB for chat history. Secure, private communication between users.",
-    image: "/projects/project_3.png",
+    image: "/projects/Project_3.png",
     tags: ["React.js", "Material UI", "Node.js", "MongoDB", "Express", "Socket.IO", "JWT"],
     demoUrl: "https://mern-chat-bwlm.onrender.com/",
     githubUrl: "https://github.com/abhishek-ab7/MERN-Chat",
