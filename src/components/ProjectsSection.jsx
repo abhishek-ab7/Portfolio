@@ -5,7 +5,7 @@ const projects = [
     id: 1,
     title: "Full-Stack E-Commerce Website",
     description:
-      "Production-ready architecture for secure user sessions, Stripe payments, admin dashboard, and order management. Reduced manual work by 25%.",
+      "Production-ready architecture for secure user sessions, Rayzorpay payments, admin dashboard, and order management. Reduced manual work by 25%.",
     image: "/projects/project_1.png",
     tags: ["React.js", "Node.js", "MongoDB", "Redux", "Tailwind CSS", "Razorpay API"],
     demoUrl: "https://e-commerce-mauve-eight.vercel.app/",
