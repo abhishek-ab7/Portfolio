@@ -5,7 +5,7 @@ const skills = [
   // Languages
   { name: "C++", level: 90, category: "languages" },
   { name: "JavaScript", level: 90, category: "languages" },
-  { name: "Python", level: 80, category: "languages" },
+  { name: "Python", level: 70, category: "languages" },
 
   // Technologies
   { name: "HTML/CSS", level: 95, category: "technologies" },
@@ -25,7 +25,7 @@ const skills = [
   { name: "RESTful APIs/JWT", level: 85, category: "tools" },
   
   { name: "Google OAuth", level: 70, category: "tools" },
-  { name: "Stripe API", level: 70, category: "tools" },
+  { name: "Razorpay API", level: 70, category: "tools" },
 ];
 
 const categories = ["all", "languages", "technologies", "tools"];

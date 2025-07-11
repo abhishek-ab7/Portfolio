@@ -6,10 +6,10 @@ const projects = [
     title: "Full-Stack E-Commerce Website",
     description:
       "Production-ready architecture for secure user sessions, Stripe payments, admin dashboard, and order management. Reduced manual work by 25%.",
-    image: "/projects/project1.png",
-    tags: ["React.js", "Node.js", "MongoDB", "Redux", "Tailwind CSS", "Stripe API"],
-    demoUrl: "#",
-    githubUrl: "#",
+    image: "/projects/project_1.png",
+    tags: ["React.js", "Node.js", "MongoDB", "Redux", "Tailwind CSS", "Razorpay API"],
+    demoUrl: "https://e-commerce-mauve-eight.vercel.app/",
+    githubUrl: "https://github.com/abhishek-ab7/E-commerce",
   },
   {
     id: 2,
@@ -26,10 +26,10 @@ const projects = [
     title: "Real-Time Chat App",
     description:
       "Low-latency messaging with 99.9% uptime and real-time sync using MongoDB for chat history. Secure, private communication between users.",
-    image: "/projects/project3.png",
+    image: "/projects/project_3.png",
     tags: ["React.js", "Material UI", "Node.js", "MongoDB", "Express", "Socket.IO", "JWT"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "https://mern-chat-bwlm.onrender.com/",
+    githubUrl: "https://github.com/abhishek-ab7/MERN-Chat",
   },
 ];
 
