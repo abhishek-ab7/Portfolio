@@ -16,10 +16,10 @@ const projects = [
     title: "Live Location Tracking Web Application",
     description:
       "Real-time web app for tracking and visualizing location data on a map. Enabled real-time client-server communication and high-accuracy geolocation using browser APIs and Open Street Maps.",
-    image: "/projects/project2.png",
+    image: "/projects/project_2.png",
     tags: ["Node.js", "Express.js", "Socket.IO", "JavaScript", "Leaflet.js", "Geolocation API"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "https://live-location-tracking-rj87.onrender.com/",
+    githubUrl: "https://github.com/abhishek-ab7/Live-Location-tracking",
   },
   {
     id: 3,
