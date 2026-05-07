@@ -54,28 +54,17 @@ export const AboutSection = () => {
         <div className="mt-20">
           <div className="section-heading mb-10">
             <p className="eyebrow">Experience</p>
-            <h2>Professional timeline with measurable engineering impact.</h2>
-            <p>Recent work is emphasized first, with each role grouped by context, stack ownership, and the outcomes delivered.</p>
+            <h2>Outcome-focused work timeline.</h2>
           </div>
-
-          <div className="grid gap-8 lg:grid-cols-[0.34fr_0.66fr] lg:items-start">
-            <aside className="premium-card sticky top-24 overflow-hidden p-7 text-left">
-              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-cyan-400 to-emerald-400" />
-              <div className="inline-flex rounded-2xl bg-primary/10 p-3 text-primary">
-                <BriefcaseBusiness className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 text-2xl font-bold tracking-tight">Work experience</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                A focused timeline covering full-stack delivery, internal platform architecture, CI/CD, caching, RBAC, and internship execution.
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-3 text-center">
-                <div className="rounded-2xl border border-border bg-background/70 p-4">
-                  <p className="text-2xl font-black text-primary">{experience.length}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">roles</p>
-                </div>
-                <div className="rounded-2xl border border-border bg-background/70 p-4">
-                  <p className="text-2xl font-black text-primary">10K+</p>
-                  <p className="mt-1 text-xs text-muted-foreground">API reads/day</p>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {experience.map((item) => (
+              <article key={`${item.company}-${item.period}`} className="premium-card p-7 text-left">
+                <div className="flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold">{item.role}</h3>
+                    <p className="text-primary">{item.company}</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground sm:text-right">{item.period}<br />{item.location}</p>
                 </div>
               </div>
             </aside>
