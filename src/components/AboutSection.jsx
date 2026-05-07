@@ -57,6 +57,25 @@ export const AboutSection = () => {
             <p className="eyebrow">Experience</p>
             <h2>Professional timeline with measurable engineering impact.</h2>
             <p>Recent work is emphasized first, with each role grouped by context, stack ownership, and the outcomes delivered.</p>
+            <h2>Outcome-focused work timeline.</h2>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {experience.map((item) => (
+              <article key={`${item.company}-${item.period}`} className="premium-card p-7 text-left">
+                <div className="flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold">{item.role}</h3>
+                    <p className="text-primary">{item.company}</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground sm:text-right">{item.period}<br />{item.location}</p>
+                </div>
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
 
           <ExperienceTimeline />
