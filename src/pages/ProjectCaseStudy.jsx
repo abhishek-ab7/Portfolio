@@ -25,7 +25,9 @@ export const ProjectCaseStudy = () => {
               <h1 className="mt-4 max-w-4xl text-5xl font-black tracking-[-0.05em] md:text-7xl">{project.title}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">{project.description}</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="cosmic-button inline-flex items-center gap-2">Live demo <ExternalLink className="h-4 w-4" /></a>
+                {project.demoUrl && (
+                  <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="cosmic-button inline-flex items-center gap-2">Live demo <ExternalLink className="h-4 w-4" /></a>
+                )}
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="secondary-button inline-flex items-center gap-2">Source code <Github className="h-4 w-4" /></a>
               </div>
             </div>
