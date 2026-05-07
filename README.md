@@ -53,8 +53,11 @@ React + Vite SPA
 - `npm run lint` checks React and JavaScript quality.
 - `npm run build` verifies the production Vite bundle.
 - GitHub Actions runs install, lint, and build on push and pull request.
+- CI uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v5` to stay aligned with GitHub Actions runner defaults.
 
 ## Local Development
+
+Use Node.js 24 to match the GitHub Actions quality gate.
 
 ```bash
 npm install
