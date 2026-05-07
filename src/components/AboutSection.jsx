@@ -1,6 +1,6 @@
 import { BriefcaseBusiness, Code2, Database, RadioTower } from "lucide-react";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
-import { capabilities, profile } from "@/data/portfolio";
+import { capabilities, experience, profile } from "@/data/portfolio";
 
 const icons = [Code2, RadioTower, Database, BriefcaseBusiness];
 
