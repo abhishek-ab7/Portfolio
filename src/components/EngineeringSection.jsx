@@ -1,4 +1,5 @@
-import { Activity, BookOpen, CheckCircle2, GitBranch, Github, Network } from "lucide-react";
+import { Link } from "react-router-dom";
+import { BookOpen, CheckCircle2, GitBranch, Github, Network } from "lucide-react";
 import { engineeringNotes, profile, repoQuality } from "@/data/portfolio";
 
 const codeSnippet = `const requireAuth = (req, res, next) => {
@@ -62,28 +63,14 @@ export const EngineeringSection = () => {
             <h3 className="text-xl font-bold">Engineering notes for visitor retention</h3>
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               {engineeringNotes.map((note) => (
-                <a key={note.slug} href={note.slug} className="rounded-2xl border border-border bg-background/60 p-4 transition hover:border-primary/60 hover:-translate-y-1">
+                <Link key={note.slug} to={note.slug} className="rounded-2xl border border-border bg-background/60 p-4 transition hover:border-primary/60 hover:-translate-y-1">
                   <p className="text-xs text-primary">{note.readTime}</p>
                   <h4 className="mt-2 font-semibold leading-6">{note.title}</h4>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">{note.summary}</p>
-                </a>
+                </Link>
               ))}
             </div>
           </article>
-        </div>
-
-        <div className="mt-6 premium-card p-6 text-left">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-primary"><Activity className="h-5 w-5" /> Live demo readiness</div>
-              <p className="mt-2 text-sm text-muted-foreground">Add uptime checks or analytics later to track demo clicks, resume downloads, and case-study retention.</p>
-            </div>
-            <div className="grid gap-2 text-sm sm:grid-cols-3">
-              <span className="rounded-full bg-emerald-500/10 px-3 py-2 text-emerald-300">Build gate</span>
-              <span className="rounded-full bg-cyan-500/10 px-3 py-2 text-cyan-300">SEO schema</span>
-              <span className="rounded-full bg-violet-500/10 px-3 py-2 text-violet-300">Case studies</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

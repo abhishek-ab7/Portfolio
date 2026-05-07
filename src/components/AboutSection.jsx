@@ -1,5 +1,6 @@
 import { BriefcaseBusiness, Code2, Database, RadioTower } from "lucide-react";
-import { capabilities, experience, profile } from "@/data/portfolio";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { capabilities, profile } from "@/data/portfolio";
 
 const icons = [Code2, RadioTower, Database, BriefcaseBusiness];
 
@@ -54,6 +55,8 @@ export const AboutSection = () => {
         <div className="mt-20">
           <div className="section-heading mb-10">
             <p className="eyebrow">Experience</p>
+            <h2>Professional timeline with measurable engineering impact.</h2>
+            <p>Recent work is emphasized first, with each role grouped by context, stack ownership, and the outcomes delivered.</p>
             <h2>Outcome-focused work timeline.</h2>
           </div>
           <div className="grid gap-6 lg:grid-cols-3">
@@ -74,6 +77,8 @@ export const AboutSection = () => {
               </article>
             ))}
           </div>
+
+          <ExperienceTimeline />
         </div>
       </div>
     </section>
