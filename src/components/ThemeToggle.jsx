@@ -3,44 +3,33 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(false);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    }
+    const storedTheme = localStorage.getItem("theme") || "dark";
+    const light = storedTheme === "light";
+    document.documentElement.classList.toggle("light", light);
+    localStorage.setItem("theme", storedTheme);
+    setIsLightMode(light);
   }, []);
 
   const toggleTheme = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
-    }
+    const nextIsLight = !isLightMode;
+    document.documentElement.classList.toggle("light", nextIsLight);
+    localStorage.setItem("theme", nextIsLight ? "light" : "dark");
+    setIsLightMode(nextIsLight);
   };
 
   return (
     <button
       onClick={toggleTheme}
       className={cn(
-        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-        "focus:outlin-hidden"
+        "fixed right-5 top-5 z-50 rounded-full border border-border bg-card/80 p-2 text-foreground shadow-xl backdrop-blur transition-colors duration-300 max-sm:hidden",
+        "focus:outline-hidden focus:ring-2 focus:ring-primary"
       )}
+      aria-label={isLightMode ? "Switch to dark theme" : "Switch to light theme"}
     >
-      {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-300" />
-      ) : (
-        <Moon className="h-6 w-6 text-blue-900" />
-      )}
+      {isLightMode ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5 text-yellow-300" />}
     </button>
   );
 };
