@@ -1,0 +1,10 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#070A12"/>
+  <circle cx="180" cy="60" r="300" fill="#7C3AED" opacity="0.22"/>
+  <circle cx="1030" cy="590" r="330" fill="#22D3EE" opacity="0.16"/>
+  <rect x="80" y="80" width="1040" height="470" rx="40" fill="#0F172A" stroke="#243044"/>
+  <text x="130" y="210" font-family="Inter, Arial" font-size="76" font-weight="900" fill="#F8FAFC">Abhishek Saini</text>
+  <text x="130" y="300" font-family="Inter, Arial" font-size="52" font-weight="800" fill="#A78BFA">Full-Stack Software Engineer</text>
+  <text x="130" y="380" font-family="Inter, Arial" font-size="32" fill="#CBD5E1">React · Node.js · MongoDB · Socket.IO · REST APIs</text>
+  <text x="130" y="455" font-family="JetBrains Mono, monospace" font-size="26" fill="#22D3EE">case studies + architecture + live demos + GitHub proof</text>
+</svg>

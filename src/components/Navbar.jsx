@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { profile } from "@/data/portfolio";
+import { Download, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
   { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
+  { name: "Case Studies", href: "#projects" },
   { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "Engineering", href: "#engineering" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -15,75 +16,60 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        "fixed inset-x-0 top-0 z-40 transition-all duration-300",
+        isScrolled ? "border-b border-border bg-background/80 py-3 shadow-2xl backdrop-blur-xl" : "py-5"
       )}
+      aria-label="Primary navigation"
     >
-      <div className="container flex items-center justify-between">
-        <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
-        >
-          <span className="relative z-10">
-            <span className="text-glow text-foreground"> Abhishek Saini </span>{" "}
-            Portfolio
-          </span>
+      <div className="container flex items-center justify-between gap-6">
+        <a className="group text-left font-bold tracking-tight" href="/#hero" aria-label="Abhishek Saini home">
+          <span className="block text-base leading-none text-foreground">Abhishek Saini</span>
+          <span className="text-xs uppercase tracking-[0.28em] text-primary">Full-stack engineer</span>
         </a>
 
-        {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
-          {navItems.map((item, key) => (
-            <a
-              key={key}
-              href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
-            >
+        <div className="hidden items-center gap-7 md:flex">
+          {navItems.map((item) => (
+            <a key={item.href} href={`/${item.href}`} className="text-sm text-foreground/75 transition-colors hover:text-primary">
               {item.name}
             </a>
           ))}
+          <a href={profile.resume} download className="secondary-button inline-flex items-center gap-2 px-4 py-2 text-sm">
+            Resume <Download className="h-4 w-4" />
+          </a>
         </div>
-
-        {/* mobile nav */}
 
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
-          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+          className="rounded-full border border-border p-2 text-foreground md:hidden"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+            "fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-background/95 backdrop-blur-xl transition-all duration-300 md:hidden",
+            isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+          {navItems.map((item) => (
+            <a key={item.href} href={`/${item.href}`} className="text-2xl font-semibold text-foreground/85 hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+              {item.name}
+            </a>
+          ))}
+          <a href={profile.resume} download className="cosmic-button inline-flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+            Download resume <Download className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </nav>

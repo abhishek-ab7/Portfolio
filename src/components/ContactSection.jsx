@@ -1,204 +1,107 @@
-import {
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Twitch,
-  Twitter,
-  Github,
-} from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
+import { profile } from "@/data/portfolio";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setIsSubmitting(true);
 
-    const form = e.target;
+    const form = event.currentTarget;
     const formData = {
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
     };
 
-    emailjs.send(
-      'service_klk1uls',      // EmailJS Service ID
-      'template_9taweke',     // EmailJS Template ID
-      formData,
-      '9G4d_GaWmuryxswNZ'    // Corrected EmailJS Public Key (no dash)
-    )
-    .then(
-      (result) => {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
-        setIsSubmitting(false);
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      const subject = encodeURIComponent(`Portfolio inquiry from ${formData.name}`);
+      const body = encodeURIComponent(`${formData.message}\n\nFrom: ${formData.name} <${formData.email}>`);
+      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      toast({
+        title: "Opening email client",
+        description: "EmailJS is not configured, so I prepared a direct email instead.",
+      });
+      setIsSubmitting(false);
+      form.reset();
+      return;
+    }
+
+    emailjs
+      .send(serviceId, templateId, formData, publicKey)
+      .then(() => {
+        toast({ title: "Message sent!", description: "Thanks for reaching out. I will respond soon." });
         form.reset();
-      },
-      (error) => {
-        toast({
-          title: "Error",
-          description: "There was an error sending your message. Please try again later.",
-        });
-        setIsSubmitting(false);
-      }
-    );
+      })
+      .catch(() => {
+        toast({ title: "Message not sent", description: "Please email me directly using the contact link." });
+      })
+      .finally(() => setIsSubmitting(false));
   };
+
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
+    <section id="contact" className="section-padding relative px-4">
+      <div className="container">
+        <div className="section-heading">
+          <p className="eyebrow">Contact</p>
+          <h2>Ready for recruiter outreach and engineering conversations.</h2>
+          <p>Fast contact options, resume access, and social proof are available without forcing visitors through a form.</p>
+        </div>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">
-              {" "}
-              Contact Information
-            </h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
-                  <a
-                    href="mailto:abhishek79saini@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    abhishek79saini@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
-                  <a
-                    href="tel:+917906828283"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +91 79068 28283
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Roorkee, Uttarakhand, India
-                  </a>
-                </div>
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <aside className="premium-card p-7 text-left">
+            <h3 className="text-2xl font-bold">Contact information</h3>
+            <div className="mt-6 space-y-5">
+              <a href={`mailto:${profile.email}`} className="flex items-start gap-4 rounded-2xl border border-border bg-background/60 p-4 hover:border-primary/60">
+                <Mail className="mt-1 h-5 w-5 text-primary" />
+                <span><span className="block font-semibold">Email</span><span className="text-sm text-muted-foreground">{profile.email}</span></span>
+              </a>
+              <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="flex items-start gap-4 rounded-2xl border border-border bg-background/60 p-4 hover:border-primary/60">
+                <Phone className="mt-1 h-5 w-5 text-primary" />
+                <span><span className="block font-semibold">Phone</span><span className="text-sm text-muted-foreground">{profile.phone}</span></span>
+              </a>
+              <div className="flex items-start gap-4 rounded-2xl border border-border bg-background/60 p-4">
+                <MapPin className="mt-1 h-5 w-5 text-primary" />
+                <span><span className="block font-semibold">Location</span><span className="text-sm text-muted-foreground">{profile.location}</span></span>
               </div>
             </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="https://www.linkedin.com/in/abhishek79saini//" target="_blank">
-                  <Linkedin />
-                </a>
-                <a href="https://github.com/abhishek-ab7" target="_blank">
-                  <Github />
-                </a>
-              </div>
+            <div className="mt-6 flex gap-3">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="secondary-button inline-flex items-center gap-2 px-4 py-2 text-sm"><Linkedin className="h-4 w-4" /> LinkedIn</a>
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" className="secondary-button inline-flex items-center gap-2 px-4 py-2 text-sm"><Github className="h-4 w-4" /> GitHub</a>
             </div>
-          </div>
+          </aside>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
-
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Your Name"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Email"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
-          </div>
+          <form onSubmit={handleSubmit} className="premium-card p-7 text-left">
+            <h3 className="text-2xl font-bold">Send a message</h3>
+            <p className="mt-2 text-sm text-muted-foreground">For best response speed, include role, company, location/remote preference, and interview timeline.</p>
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <label className="text-sm font-medium">
+                Your name
+                <input type="text" name="name" required className="mt-2 w-full rounded-2xl border border-input bg-background px-4 py-3 outline-hidden transition focus:ring-2 focus:ring-primary" placeholder="Your name" />
+              </label>
+              <label className="text-sm font-medium">
+                Your email
+                <input type="email" name="email" required className="mt-2 w-full rounded-2xl border border-input bg-background px-4 py-3 outline-hidden transition focus:ring-2 focus:ring-primary" placeholder="you@company.com" />
+              </label>
+            </div>
+            <label className="mt-5 block text-sm font-medium">
+              Message
+              <textarea name="message" required rows="6" className="mt-2 w-full resize-none rounded-2xl border border-input bg-background px-4 py-3 outline-hidden transition focus:ring-2 focus:ring-primary" placeholder="Hello Abhishek, I would like to discuss..." />
+            </label>
+            <button type="submit" disabled={isSubmitting} className={cn("cosmic-button mt-6 inline-flex w-full items-center justify-center gap-2", isSubmitting && "cursor-not-allowed opacity-70")}>
+              {isSubmitting ? "Preparing..." : "Send message"} <Send className="h-4 w-4" />
+            </button>
+          </form>
         </div>
       </div>
     </section>

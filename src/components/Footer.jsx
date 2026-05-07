@@ -1,19 +1,18 @@
 import { ArrowUp } from "lucide-react";
+import { profile } from "@/data/portfolio";
 
 export const Footer = () => {
   return (
-    <footer className="py-12 px-4 bg-card relative border-t border-border mt-12 pt-8 flex flex-wrap justify-between items-center">
-      {" "}
-      <p className="text-sm text-muted-foreground">
-        {" "}
-        &copy; {new Date().getFullYear()} Abhishek Saini. All rights reserved.
-      </p>
-      <a
-        href="#hero"
-        className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
-      >
-        <ArrowUp size={20} />
-      </a>
+    <footer className="border-t border-border bg-card/60 px-4 py-10">
+      <div className="container flex flex-col gap-6 text-left md:flex-row md:items-center md:justify-between">
+        <div>
+          <p className="font-semibold">{profile.name}</p>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Premium full-stack portfolio. Built with React, Vite, and Tailwind CSS.</p>
+        </div>
+        <a href="#hero" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-primary transition hover:border-primary" aria-label="Back to top">
+          <ArrowUp size={20} />
+        </a>
+      </div>
     </footer>
   );
 };

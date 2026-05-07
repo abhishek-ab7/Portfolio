@@ -1,130 +1,81 @@
-import { Briefcase, Code, User } from "lucide-react";
+import { BriefcaseBusiness, Code2, Database, RadioTower } from "lucide-react";
+import { capabilities, experience, profile } from "@/data/portfolio";
+
+const icons = [Code2, RadioTower, Database, BriefcaseBusiness];
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
-      {" "}
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary"> Me</span>
-        </h2>
+    <section id="about" className="section-padding relative px-4">
+      <div className="container">
+        <div className="section-heading">
+          <p className="eyebrow">Positioning</p>
+          <h2>Engineer first. Product-aware. Recruiter-friendly.</h2>
+          <p>
+            I present every project as a system: the user problem, architecture, tradeoffs, implementation proof, and business impact.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              Aspiring Software Engineer & MERN Stack Developer
-            </h3>
-
-            <p className="text-muted-foreground text-justify">
-              Aspiring Software Development Engineer with a strong foundation in full-stack web development, scalable backend systems, and real-time application design using the MERN stack. Delivered multiple production-ready projects featuring secure authentication, cloud integrations, and optimized system performance. Consistently improving problem-solving skills with 300+ Data Structures & Algorithms problems solved on LeetCode and Codeforces.
+        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+          <article className="premium-card p-8 text-left">
+            <p className="text-sm uppercase tracking-[0.28em] text-primary">About</p>
+            <h3 className="mt-4 text-3xl font-bold tracking-tight">Full-stack developer focused on credible execution.</h3>
+            <p className="mt-5 leading-8 text-muted-foreground">
+              I build full-stack web applications with React, Node.js, Express, MongoDB, Socket.IO, and REST APIs. My strongest work combines secure authentication, real-time features, database-backed workflows, and polished interfaces that recruiters and engineers can evaluate quickly.
             </p>
-
-           
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
-                Get In Touch
-              </a>
-
-              <a
-                href="https://drive.google.com/file/d/1kav7KGVrcJ3gyUsIWfpzLmTV0CTb5TUe/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
+            <p className="mt-4 leading-8 text-muted-foreground">
+              This portfolio is structured to make technical judgment visible: why each stack was chosen, how the system is organized, where tradeoffs appeared, and what measurable outcomes the work supports.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#projects" className="cosmic-button text-center">Explore case studies</a>
+              <a href={profile.resume} download className="secondary-button text-center">Download CV</a>
             </div>
+          </article>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {capabilities.map((capability, index) => {
+              const Icon = icons[index];
+              return (
+                <article key={capability.title} className="premium-card card-hover p-6 text-left">
+                  <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3 text-primary"><Icon className="h-6 w-6" /></div>
+                  <h3 className="text-xl font-semibold">{capability.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{capability.summary}</p>
+                  <p className="mt-4 text-sm font-medium text-foreground">{capability.proof}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {capability.tools.map((tool) => (
+                      <span key={tool} className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground">{tool}</span>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
+        <div className="mt-20">
+          <div className="section-heading mb-10">
+            <p className="eyebrow">Experience</p>
+            <h2>Outcome-focused internship timeline.</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {experience.map((item) => (
+              <article key={`${item.company}-${item.period}`} className="premium-card p-7 text-left">
+                <div className="flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold">{item.role}</h3>
+                    <p className="text-primary">{item.company}</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground sm:text-right">{item.period}<br />{item.location}</p>
                 </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Web Development</h4>
-                  <p className="text-muted-foreground">
-                    Creating responsive websites and web applications with
-                    modern frameworks.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
-                  <p className="text-muted-foreground">
-                    Designing intuitive user interfaces and seamless user
-                    experiences.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
-
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
-                  <p className="text-muted-foreground">
-                    Leading projects from conception to completion with agile
-                    methodologies.
-                  </p>
-                </div>
-              </div>
-            </div>
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* Experience Section */}
-      <div className="container mx-auto max-w-5xl mt-32 pt-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-          Experience
-        </h2>
-        <div className="space-y-8">
-          {/* Bluestock Fintech */}
-          <div className="bg-card p-6 rounded-lg shadow-xs">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-              <div>
-                <h3 className="text-xl font-semibold">Software Development Engineer (SDE) Intern</h3>
-                <span className="text-muted-foreground">Bluestock Fintech</span>
-              </div>
-              <div className="text-sm text-muted-foreground mt-2 md:mt-0">
-                Mar 2025 – Apr 2025 | Remote
-              </div>
-            </div>
-            
-          </div>
-          {/* Microdot Tech Aspire Solutions */}
-          <div className="bg-card p-6 rounded-lg shadow-xs">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-              <div>
-                <h3 className="text-xl font-semibold">Full-Stack Web Development Intern</h3>
-                <span className="text-muted-foreground">Microdot Tech Aspire Solutions (P) Ltd.</span>
-              </div>
-              <div className="text-sm text-muted-foreground mt-2 md:mt-0">
-                Jun 2023 – Aug 2023 | Noida, UP
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <style jsx>{`
-        #about, #experience, #skills, #projects, #contact {
-          scroll-margin-top: 100px;
-        }
-      `}</style>
     </section>
   );
 };
