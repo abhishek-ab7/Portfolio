@@ -20,7 +20,7 @@ export const AboutSection = () => {
             <p className="text-sm uppercase tracking-[0.28em] text-primary">About</p>
             <h3 className="mt-4 text-3xl font-bold tracking-tight">Full-stack developer focused on credible execution.</h3>
             <p className="mt-5 leading-8 text-muted-foreground">
-              I build full-stack web applications with React, Node.js, Express, MongoDB, Socket.IO, and REST APIs. My strongest work combines secure authentication, real-time features, database-backed workflows, and polished interfaces that recruiters and engineers can evaluate quickly.
+              I build full-stack web applications with Next.js, React, TypeScript, Node.js, Express, PostgreSQL, MongoDB, Supabase, Socket.IO, and REST APIs. My strongest work combines secure authentication, RBAC, real-time features, caching, database-backed workflows, and polished interfaces that recruiters and engineers can evaluate quickly.
             </p>
             <p className="mt-4 leading-8 text-muted-foreground">
               This portfolio is structured to make technical judgment visible: why each stack was chosen, how the system is organized, where tradeoffs appeared, and what measurable outcomes the work supports.
@@ -54,9 +54,9 @@ export const AboutSection = () => {
         <div className="mt-20">
           <div className="section-heading mb-10">
             <p className="eyebrow">Experience</p>
-            <h2>Outcome-focused internship timeline.</h2>
+            <h2>Outcome-focused work timeline.</h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-3">
             {experience.map((item) => (
               <article key={`${item.company}-${item.period}`} className="premium-card p-7 text-left">
                 <div className="flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between">

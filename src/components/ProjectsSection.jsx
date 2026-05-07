@@ -49,9 +49,11 @@ export const ProjectsSection = () => {
                   <a href={project.slug} className="cosmic-button inline-flex items-center gap-2 px-4 py-2 text-sm">
                     Read case study <ArrowRight className="h-4 w-4" />
                   </a>
-                  <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-4 py-2 text-sm" aria-label={`Open live demo for ${project.title}`}>
-                    Demo <ExternalLink className="h-4 w-4" />
-                  </a>
+                  {project.demoUrl && (
+                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-4 py-2 text-sm" aria-label={`Open live demo for ${project.title}`}>
+                      Demo <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-4 py-2 text-sm" aria-label={`Open GitHub repository for ${project.title}`}>
                     Code <Github className="h-4 w-4" />
                   </a>

@@ -2,7 +2,7 @@ export const profile = {
   name: "Abhishek Saini",
   role: "Full-Stack Software Engineer",
   headline:
-    "I build secure MERN products, real-time systems, and polished web experiences with production-minded architecture.",
+    "I build secure full-stack products, AI-assisted productivity tools, realtime systems, and scalable internal platforms with production-minded architecture.",
   location: "Roorkee, Uttarakhand, India",
   availability: "Open to SDE, Full-Stack, and MERN opportunities",
   email: "abhishek79saini@gmail.com",
@@ -10,44 +10,113 @@ export const profile = {
   github: "https://github.com/abhishek-ab7",
   linkedin: "https://www.linkedin.com/in/abhishek79saini/",
   resume: "/Abhishek-Saini-Resume.pdf",
-  stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO", "REST APIs", "JWT", "Tailwind"],
+  stack: ["Next.js", "React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Supabase", "Redis", "Docker"],
 };
 
 export const proofMetrics = [
   { value: "300+", label: "DSA problems solved", detail: "LeetCode + Codeforces practice" },
-  { value: "3", label: "production-style builds", detail: "commerce, chat, and location systems" },
-  { value: "25%", label: "manual-work reduction", detail: "estimated admin workflow improvement" },
-  { value: "<100ms", label: "real-time event target", detail: "Socket.IO interaction design goal" },
+  { value: "5", label: "production-style builds", detail: "CRM, PMS, AI habits, commerce, and realtime systems" },
+  { value: "10K+", label: "daily API requests supported", detail: "Redis-backed CRM API caching work" },
+  { value: "80%", label: "automated test coverage target", detail: "Jest/Vitest CI pipeline experience" },
 ];
 
 export const capabilities = [
   {
     title: "Full-stack product delivery",
-    summary: "React interfaces backed by Node/Express APIs, authentication, dashboards, and database-backed workflows.",
-    proof: "Used in the e-commerce platform and chat app.",
-    tools: ["React", "Node.js", "Express", "MongoDB", "Redux"],
+    summary: "Next.js and React interfaces backed by Node/Express APIs, authentication, dashboards, and database-backed workflows.",
+    proof: "Used in CRM, project-management, AI productivity, commerce, and chat products.",
+    tools: ["Next.js", "React", "Node.js", "Express", "PostgreSQL", "MongoDB"],
   },
   {
     title: "Real-time systems",
-    summary: "Event-driven features for chat and live location tracking using Socket.IO, browser APIs, and map rendering.",
-    proof: "Built live messaging and geolocation broadcast flows.",
-    tools: ["Socket.IO", "WebSockets", "Leaflet", "Geolocation API"],
+    summary: "Event-driven features for chat, live location tracking, realtime subscriptions, and high-read workflow dashboards.",
+    proof: "Built live messaging, geolocation broadcast flows, and Supabase realtime product interactions.",
+    tools: ["Socket.IO", "WebSockets", "Supabase Realtime", "Leaflet", "Geolocation API"],
   },
   {
     title: "Secure API architecture",
-    summary: "JWT-protected routes, role-aware admin flows, input validation plans, and separation of controller/service concerns.",
-    proof: "Applied across auth-heavy MERN projects.",
-    tools: ["JWT", "REST", "Middleware", "Protected Routes"],
+    summary: "JWT-protected routes, granular RBAC, role-aware admin flows, input validation plans, and separation of controller/service concerns.",
+    proof: "Applied across CRM, project-management, commerce, and messaging projects.",
+    tools: ["JWT", "RBAC", "REST", "Middleware", "Protected Routes"],
   },
   {
     title: "Engineering documentation",
-    summary: "Case studies, diagrams, setup notes, API maps, and tradeoff explanations that make implementation decisions auditable.",
-    proof: "Portfolio now documents architecture and decisions directly.",
-    tools: ["README", "Mermaid", "System Design", "CI"],
+    summary: "Dockerized environments, CI/CD, case studies, setup notes, API maps, and tradeoff explanations that make implementation decisions auditable.",
+    proof: "Reduced onboarding and deployment friction with containerized workflows and automated checks.",
+    tools: ["Docker", "Podman", "GitHub Actions", "Jest", "Vitest"],
   },
 ];
 
 export const projects = [
+  {
+    id: "habitflow",
+    title: "HabitFlow — AI-Powered Productivity Platform",
+    eyebrow: "AI · Gamification · Supabase",
+    role: "Full-stack AI product developer",
+    description:
+      "An AI-assisted habit platform that generates personalized schedules, tracks progress, and motivates users with XP, levels, streaks, and realtime feedback.",
+    problem:
+      "Users often abandon habit tools when setup feels manual, progress feedback is delayed, or habit tracking lacks motivation loops.",
+    impact: "Integrated Gemini AI to reduce setup time by 40% and engineered gamification flows designed to improve 7-day retention from 22% to 68%.",
+    image: "/projects/habitflow.svg",
+    tags: ["Next.js", "TypeScript", "Gemini AI", "Supabase", "@dnd-kit", "Tailwind"],
+    demoUrl: "https://habit-flow-ochre-two.vercel.app/",
+    githubUrl: "https://github.com/abhishek-ab7/HabitFlow",
+    slug: "/projects/habitflow",
+    stackWhy: [
+      ["Next.js + TypeScript", "Typed full-stack product surface for habit dashboards, onboarding flows, and production-ready routing."],
+      ["Gemini AI", "Personalized habit schedule generation that reduces blank-page setup friction for new users."],
+      ["Supabase", "Database triggers and realtime subscriptions for XP, levels, streaks, and progress updates."],
+      ["@dnd-kit", "Accessible drag-and-drop interactions with optimistic UI updates across desktop and mobile."],
+    ],
+    architecture: [
+      "Next.js renders onboarding, routine planning, habit boards, and progress dashboards.",
+      "Gemini-powered flows transform user goals into personalized habit schedules.",
+      "Supabase persists habits, completions, XP, levels, streaks, and profile state.",
+      "Realtime subscriptions and optimistic updates keep progress feedback fast during drag-and-drop and completion actions.",
+    ],
+    challenges: [
+      ["AI output must feel immediately useful", "Constrain prompts around user goals and transform generated schedules into editable habit objects."],
+      ["Gamification requires consistent state", "Use database-backed completion and streak logic so XP, levels, and retention loops stay reliable."],
+      ["Drag-and-drop can feel sluggish", "Apply optimistic UI updates and keep interactions responsive with sub-50 ms feedback targets."],
+    ],
+    endpoints: ["POST /api/ai/generate-schedule", "GET /habits", "POST /habit-completions", "supabase: realtime changes", "PATCH /routines/:id"],
+    schema: ["Profile", "Habit", "Routine", "HabitCompletion", "XPEvent", "Streak"],
+  },
+  {
+    id: "project-management-system",
+    title: "Nexus Project Management System",
+    eyebrow: "PMS · Auth · Messaging",
+    role: "Full-stack platform developer",
+    description:
+      "A premium project-management system for modern teams with kanban boards, task lists, subtasks, realtime messaging, local attachments, and self-hosted persistence.",
+    problem:
+      "Teams need one secure workspace for project planning, messaging, task ownership, and file-backed collaboration without depending on a third-party backend platform.",
+    impact: "Built a self-hosted PMS architecture with PostgreSQL, Prisma, Auth.js, optimized Next.js App Router flows, and local attachment storage for team autonomy.",
+    image: "/projects/nexus-pms.svg",
+    tags: ["Next.js 15", "TypeScript", "PostgreSQL", "Prisma", "Auth.js", "Tailwind"],
+    githubUrl: "https://github.com/abhishek-ab7/Product_management_system",
+    slug: "/projects/project-management-system",
+    stackWhy: [
+      ["Next.js App Router", "Server-first routing and optimized UI delivery for dashboards, kanban boards, task details, and messaging views."],
+      ["PostgreSQL + Prisma", "Relational project, task, membership, message, and attachment models with type-safe data access."],
+      ["Auth.js", "Secure authentication with GitHub and email providers for team workspace access."],
+      ["Local file storage", "Attachment support that keeps files and message metadata under self-hosted infrastructure control."],
+    ],
+    architecture: [
+      "Next.js app workspace renders project dashboards, boards, task lists, subtasks, and messaging screens.",
+      "Auth.js manages secure sessions and provider-based login for team members.",
+      "Prisma coordinates PostgreSQL models for users, projects, memberships, tasks, subtasks, messages, and attachments.",
+      "Local upload storage supports message attachments and user files with deploy-time persistence considerations.",
+    ],
+    challenges: [
+      ["Project tools need trustworthy authorization", "Model users, memberships, roles, and project access checks close to server actions and API boundaries."],
+      ["Messaging needs durable context", "Store message metadata and attachment references in PostgreSQL while keeping files in local upload storage."],
+      ["Complex task state can sprawl", "Separate kanban, task-list, subtask, and detail flows into typed data models and reusable workspace UI."],
+    ],
+    endpoints: ["GET /projects", "POST /tasks", "PATCH /tasks/:id", "POST /messages", "POST /uploads"],
+    schema: ["User", "Project", "Membership", "Task", "Subtask", "Message", "Attachment"],
+  },
   {
     id: "ecommerce",
     title: "Full-Stack E-Commerce Platform",
@@ -158,37 +227,50 @@ export const projects = [
 export const skillGroups = [
   {
     title: "Frontend Engineering",
-    skills: ["React", "Redux", "Tailwind CSS", "Material UI", "Responsive UI"],
-    evidence: "Built storefront, chat, admin, and dashboard flows with reusable components and stateful interactions.",
+    skills: ["Next.js", "React", "TypeScript", "Redux", "Tailwind CSS", "HTML5", "CSS3"],
+    evidence: "Built AI productivity, PMS, CRM, storefront, chat, admin, and dashboard flows with reusable components and stateful interactions.",
   },
   {
     title: "Backend APIs",
-    skills: ["Node.js", "Express", "REST APIs", "JWT", "Middleware"],
-    evidence: "Implemented auth, products, orders, payment verification, messages, and realtime coordination endpoints.",
+    skills: ["Node.js", "Express", "REST APIs", "JWT", "RBAC", "Middleware"],
+    evidence: "Implemented auth, products, orders, payment verification, messages, RBAC, caching, and realtime coordination endpoints.",
   },
   {
     title: "Realtime & Browser APIs",
-    skills: ["Socket.IO", "WebSockets", "Geolocation API", "Leaflet"],
-    evidence: "Designed event flows for private chat and live location broadcasting.",
+    skills: ["Socket.IO", "WebSockets", "Supabase Realtime", "Geolocation API", "Leaflet", "@dnd-kit"],
+    evidence: "Designed event flows for private chat, live location broadcasting, realtime subscriptions, and fast drag-and-drop interactions.",
   },
   {
     title: "Data & Persistence",
-    skills: ["MongoDB", "MySQL", "PostgreSQL", "Schema Design"],
-    evidence: "Modeled users, products, orders, payments, conversations, and messages.",
+    skills: ["PostgreSQL", "Prisma", "MongoDB", "Redis", "Supabase", "Schema Design"],
+    evidence: "Modeled users, projects, tasks, messages, habits, streaks, products, orders, payments, conversations, and cache-heavy CRM API flows.",
   },
   {
-    title: "Engineering Workflow",
-    skills: ["Git", "GitHub", "README", "Deployment", "Debugging"],
-    evidence: "Portfolio now includes case studies, system diagrams, SEO, and build/lint gates.",
+    title: "DevOps & Workflow",
+    skills: ["Docker", "Podman", "Git", "GitHub Actions", "Postman", "Linux"],
+    evidence: "Containerized development and production environments, documented API workflows, and wired automated checks into CI/CD pipelines.",
   },
   {
     title: "Problem Solving",
-    skills: ["C++", "JavaScript", "Python", "DSA"],
-    evidence: "300+ algorithmic problems solved across LeetCode and Codeforces practice.",
+    skills: ["C++", "JavaScript", "TypeScript", "SQL", "DSA"],
+    evidence: "Ranked 128 out of 15,931 participants in CodeChef Starters 67 and placed 6th in Manthan 2022.",
   },
 ];
 
 export const experience = [
+  {
+    role: "Full-Stack Developer",
+    company: "Ispecia Technologies Pvt Ltd.",
+    period: "Nov 2025 – Present",
+    location: "Dehradun, Uttarakhand",
+    bullets: [
+      "Architected a scalable monorepo for an internal CRM platform using TurboRepo, separating the Next.js frontend and Node.js/Express backend services for improved maintainability and faster frontend deployments.",
+      "Dockerized development and production environments using multi-stage Docker and Podman builds, reducing developer onboarding from 2 days to 2 hours and eliminating environment inconsistencies across a four-member team.",
+      "Implemented a Redis-based caching layer for high-read CRM APIs handling 10K+ requests daily, reducing average response time from 800ms to 120ms and cutting database load by 65%.",
+      "Designed and developed a granular Role-Based Access Control (RBAC) system using JWT and custom middleware to securely manage Admin, Manager, and User access.",
+      "Established a CI/CD pipeline using GitHub Actions with automated testing (Jest/Vitest), achieving 80% code coverage and reducing deployment time from 45 minutes to 8 minutes.",
+    ],
+  },
   {
     role: "Software Development Engineer (SDE) Intern",
     company: "Bluestock Fintech",
